@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tedu.dao.GoodsDao">
+	<resultMap id="BaseResultMap" type="com.tedu.entity.Goods">
+		<id column="gid" property="gid" jdbcType="INTEGER" />
+		<result column="Gname" property="gname" jdbcType="VARCHAR" />
+		<result column="Number" property="number" jdbcType="INTEGER" />
+		<result column="Types" property="types" jdbcType="VARCHAR" />
+		<result column="Producer" property="producer" jdbcType="VARCHAR" />
+		<result column="Price" property="price" jdbcType="REAL" />
+		<result column="Carriage" property="carriage" jdbcType="REAL" />
+		<result column="Pdate" property="pdate" jdbcType="DATE" />
+		<result column="Paddress" property="paddress" jdbcType="VARCHAR" />
+		<result column="Described" property="described" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		gid, Gname, Number, Types, Producer, Price, Carriage, Pdate, Paddress,
+		Described
+	</sql>
+	<select id="selectAllGoods" resultType="map">
+		select * from smsc_goods
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from smsc_goods
+		where gid = #{gid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from smsc_goods
+		where gid = #{gid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tedu.entity.Goods">
+		insert into smsc_goods (gid, Gname, Number,
+		Types, Producer, Price,
+		Carriage, Pdate, Paddress,
+		Described)
+		values (#{gid,jdbcType=INTEGER}, #{gname,jdbcType=VARCHAR},
+		#{number,jdbcType=INTEGER},
+		#{types,jdbcType=VARCHAR}, #{producer,jdbcType=VARCHAR}, #{price,jdbcType=REAL},
+		#{carriage,jdbcType=REAL}, #{pdate,jdbcType=DATE},
+		#{paddress,jdbcType=VARCHAR},
+		#{described,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.tedu.entity.Goods">
+		insert into smsc_goods
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="gid != null">
+				gid,
+			</if>
+			<if test="gname != null">
+				Gname,
+			</if>
+			<if test="number != null">
+				Number,
+			</if>
+			<if test="types != null">
+				Types,
+			</if>
+			<if test="producer != null">
+				Producer,
+			</if>
+			<if test="price != null">
+				Price,
+			</if>
+			<if test="carriage != null">
+				Carriage,
+			</if>
+			<if test="pdate != null">
+				Pdate,
+			</if>
+			<if test="paddress != null">
+				Paddress,
+			</if>
+			<if test="described != null">
+				Described,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="gid != null">
+				#{gid,jdbcType=INTEGER},
+			</if>
+			<if test="gname != null">
+				#{gname,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=INTEGER},
+			</if>
+			<if test="types != null">
+				#{types,jdbcType=VARCHAR},
+			</if>
+			<if test="producer != null">
+				#{producer,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=REAL},
+			</if>
+			<if test="carriage != null">
+				#{carriage,jdbcType=REAL},
+			</if>
+			<if test="pdate != null">
+				#{pdate,jdbcType=DATE},
+			</if>
+			<if test="paddress != null">
+				#{paddress,jdbcType=VARCHAR},
+			</if>
+			<if test="described != null">
+				#{described,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tedu.entity.Goods">
+		update smsc_goods
+		<set>
+			<if test="gname != null">
+				Gname = #{gname,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				Number = #{number,jdbcType=INTEGER},
+			</if>
+			<if test="types != null">
+				Types = #{types,jdbcType=VARCHAR},
+			</if>
+			<if test="producer != null">
+				Producer = #{producer,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				Price = #{price,jdbcType=REAL},
+			</if>
+			<if test="carriage != null">
+				Carriage = #{carriage,jdbcType=REAL},
+			</if>
+			<if test="pdate != null">
+				Pdate = #{pdate,jdbcType=DATE},
+			</if>
+			<if test="paddress != null">
+				Paddress = #{paddress,jdbcType=VARCHAR},
+			</if>
+			<if test="described != null">
+				Described = #{described,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where gid = #{gid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tedu.entity.Goods">
+		update smsc_goods
+		set Gname = #{gname,jdbcType=VARCHAR},
+		Number = #{number,jdbcType=INTEGER},
+		Types = #{types,jdbcType=VARCHAR},
+		Producer = #{producer,jdbcType=VARCHAR},
+		Price = #{price,jdbcType=REAL},
+		Carriage = #{carriage,jdbcType=REAL},
+		Pdate = #{pdate,jdbcType=DATE},
+		Paddress = #{paddress,jdbcType=VARCHAR},
+		Described = #{described,jdbcType=VARCHAR}
+		where gid = #{gid,jdbcType=INTEGER}
+	</update>
+</mapper>

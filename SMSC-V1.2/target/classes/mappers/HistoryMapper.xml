@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tedu.dao.HistoryDao" >
+  <resultMap id="BaseResultMap" type="com.tedu.entity.History" >
+    <id column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="gid" property="gid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="buytime" property="buytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    aid, gid, uid, number, buytime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from smsc_history
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from smsc_history
+    where aid = #{aid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tedu.entity.History" >
+    insert into smsc_history (aid, gid, uid, 
+      number, buytime)
+    values (#{aid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{number,jdbcType=INTEGER}, #{buytime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tedu.entity.History" >
+    insert into smsc_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="buytime != null" >
+        buytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="buytime != null" >
+        #{buytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tedu.entity.History" >
+    update smsc_history
+    <set >
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="buytime != null" >
+        buytime = #{buytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tedu.entity.History" >
+    update smsc_history
+    set gid = #{gid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      buytime = #{buytime,jdbcType=TIMESTAMP}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+</mapper>
