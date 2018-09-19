@@ -23,6 +23,8 @@ public class Goods implements Serializable {
     private String paddress;
 
     private String described;
+    
+    private String prodpic;
 
     private static final long serialVersionUID = 1L;
 
@@ -105,6 +107,16 @@ public class Goods implements Serializable {
     public void setDescribed(String described) {
         this.described = described == null ? null : described.trim();
     }
+
+    
+    
+	public String getProdpic() {
+		return prodpic;
+	}
+
+	public void setProdpic(String prodpic) {
+		this.prodpic = prodpic;
+	}
 
 	@Override
 	public String toString() {

@@ -17,4 +17,9 @@ public class GoodsController {
 	@Autowired
 	private GoodsService goodsService;
 	
+	@RequestMapping("dotestUI")
+	@ResponseBody
+	public String dotestUI(){
+		return "ook";
+	}
 }

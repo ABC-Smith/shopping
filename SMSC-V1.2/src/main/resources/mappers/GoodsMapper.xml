@@ -12,10 +12,11 @@
 		<result column="Pdate" property="pdate" jdbcType="DATE" />
 		<result column="Paddress" property="paddress" jdbcType="VARCHAR" />
 		<result column="Described" property="described" jdbcType="VARCHAR" />
+		<result column="prodpic" property="prodpic" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		gid, Gname, Number, Types, Producer, Price, Carriage, Pdate, Paddress,
-		Described
+		Described,prodpic
 	</sql>
 	<select id="selectAllGoods" resultType="map">
 		select * from smsc_goods
