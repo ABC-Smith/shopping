@@ -158,14 +158,17 @@
                 </ul>
                 <div class="fullwidth margin-bottom-40">
                     <div>
-                        <form class="form-inline" action="../mao/dotestUI" id="form1" method="post">
-                            <input type="hidden" name="method" value="addCart">
+                        <form class="form-inline" action="" id="form1" method="post">
                             <input type="hidden" name="gid" id="addcartgid" value="" >
 
 
                             <div class="form-group">
                                 <label for="countvalue">购买数量</label>
-                                <input type="text" class="form-control" name="count" id="countvalue" style="text-align: center" value="1">
+                                <input type="text" class="form-control" name="count" id="countvalue" 
+                                style="ime-mode:disabled;text-align: center" value="1"
+                                 onpaste="return false;" 
+onkeyup="value=value.replace(/[^\d]/g,'')"      
+       onblur="value=value.replace(/[^\d]/g,'')">
                             </div>
                             	
                             <div id="jia"><img  id="jiacount" src="../images/+.png"/></div>
@@ -177,12 +180,12 @@
                 
                 
                 <div class="s-12 m-6 l-4">
-                	<a href="javascript:void(0)" class="button button-raised button-caution" onclick="subForm()"
+                	<a href="javascript:void(0)" class="button button-raised button-caution" onclick="subCartForm()"
                 	style="padding:2px 15px 5px;border-radius: 5px;color:white;
                 	font-weight: bold;">加入购物车</a>
                 </div>
                 <div class="s-12 m-6 l-4">
-                <a href="javascript:void(0)" class="button button-raised button-caution" onclick="favorGood(${product.goodid})"
+                <a href="javascript:void(0)" class="button button-raised button-caution" onclick="subOrderForm()"
                 	style="padding:2px 15px 5px;border-radius: 5px;color:white;
                 	font-weight: bold;">立即购买 </a>
                    
@@ -250,9 +253,13 @@
     }
 </script> -->
 <script type="text/javascript">
-    function subForm(){
+    function subCartForm(){
+    	document.getElementById('form1').action = "../mao/dotestUI";  
         document.getElementById("form1").submit();
-        
+    }
+    function subOrderForm(){
+    	document.getElementById('form1').action = "../mao/dotest1UI";  
+        document.getElementById("form1").submit();
     }
 </script>
 
@@ -379,6 +386,20 @@
 		$('#carr').html("运费：￥"+data.carriage);
 		$('#addcartgid').val(data.gid);
 		
+		$("#countvalue").on("blur",function(){
+			var count=parseInt($("#countvalue").val());
+			if(isNaN(count)){
+				$("#countvalue").val(1);
+			}else{
+			 if(count>=data.number){
+	            	alert("超出库存");
+	            	$("#countvalue").val(data.number);
+	         }else{
+		            $("#countvalue").val(count);
+	         }
+			}
+		})
+		 
 		$("#jiacount").click(function(){
             var count=parseInt($("#countvalue").val());
             if(count>=data.number){
