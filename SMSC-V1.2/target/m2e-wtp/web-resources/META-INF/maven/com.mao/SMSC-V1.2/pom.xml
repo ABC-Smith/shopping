@@ -18,13 +18,13 @@
 			</plugin>
 		</plugins>
 	</build>
-	<code class="language-html">
+	<!-- <code class="language-html">
 		<build>
 			<outputDirectory>${basedir}/WebRoot/WEB-INF/classes</outputDirectory>
 			<testOutputDirectory>${basedir}/WebRoot/WEB-INF/classes</testOutputDirectory>
 			<finalName>onlineTest</finalName>
 		</build>
-	</code>
+	</code> -->
 	<dependencies>
 		<dependency>
 			<groupId>org.mybatis</groupId>

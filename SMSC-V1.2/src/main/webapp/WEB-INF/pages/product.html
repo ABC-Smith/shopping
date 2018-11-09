@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="../bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="../css/style.css" rel='stylesheet' type='text/css' />
+    <script src="../js/jquery.min.js"> </script>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700|Cinzel+Decorative:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/myresponsee.css">
+    <link rel="stylesheet" href="../css/style1.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/responsive.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <script src="../js/respond.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/defaultheadpic.png" />
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="../css/iconfont.css" rel="stylesheet"/>
+    <link href="../css/common1.css" rel="stylesheet"/>
+    <link href="../css/buttons.css" rel="stylesheet"/>
+    <link href="../css/uc.css" rel="stylesheet"/>
+
+    <style>
+
+        #tu{
+            width:300px;
+            hight:300px;
+            /*border-image: solid 2px ;*/
+
+
+        }
+        .icon-text{
+            font-family: 华文楷体;
+
+        }
+        .icon-text li a{
+            color: #ffffff;
+        }
+
+        .logo1{
+            position: relative;
+            margin-top:-230px;
+            left:-450px;
+
+        }
+        nav{
+            display: inline-block;
+            top:-60px;
+            left:460px;
+            font-family: 本墨锵黑;
+            font-size: 16px;
+
+
+        }
+        nav a{
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            perspective:200px;
+        }
+        nav a span{
+            line-height: 40px;
+            background-color: #fdf0ef;
+            display: inline-block;
+            padding: 0 30px;
+            position: relative;
+            transform-origin:top;
+            transition:all 1s;
+            transform-style:preserve-3d;
+
+        }
+        nav a span::after{
+            content: attr(data-hover);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #000000;
+            text-align: center;
+            color: #ffffff;
+            width: 100%;
+            height: 100%;
+            transform:rotateX(-90deg);
+            transform-origin:top;
+        }
+
+        nav a:hover span{
+            transform:rotateX(90deg) translateY(-20px);
+        }
+
+        #jia {
+            position: relative;
+            margin-top: -30px;
+            margin-left: 200px;
+            width: 30px;
+            height: 30px;
+            cursor:pointer;
+        }
+        #jian{
+            position: relative;
+            margin-top: -30px;
+            margin-left: 60px;
+            width: 30px;
+            height: 30px;
+            cursor:pointer;
+        }
+        .uc-header-bg{
+            /*background-color: #f39894;*/
+            background-color: #ffded9;
+
+            height:90px;
+        }
+        #shoucang{
+            position: relative;
+            top:-23px;
+            left: 80px;
+            height:20px;
+            width:20px;
+        }
+        .section{
+            background-color: #fdf0ef;
+        }
+
+
+
+    </style>
+
+
+
+</head>
+
+<body class="size-1140">
+<!-- PRODUCT DETAIL START -->
+<div class="section">
+    <div class="line">
+        <div class="margin">
+            <!-- product image -->
+            <div class="s-12 m-4 l-5 margin-bottom">
+                <div id="tu"><img src='' id="prodpic" /></div>
+            </div>
+            <!-- product detail -->
+            <div class="s-12 m-8 l-7 padding-l-left">
+                <h2 id="prodname" class="text-primary"></h2>
+                <p id="proddesc" style="font-weight: bold;"></p>
+                 <h3 id="prodprice"  style="color:red"></h3>
+            	    <p id="proddress"></p>
+            	   <p id="producer"></p>
+              	 <p id="pdate"></p>
+              	 <p id="number"></p>
+              	  <p id="carr"></p>
+                <ul class="speciality margin-bottom">
+                </ul>
+                <div class="fullwidth margin-bottom-40">
+                    <div>
+                        <form class="form-inline" action="" id="form1" method="post">
+                            <input type="hidden" name="gid" id="addcartgid" value="" >
+
+
+                            <div class="form-group">
+                                <label for="countvalue">购买数量</label>
+                                <input type="text" class="form-control" name="count" id="countvalue" 
+                                style="ime-mode:disabled;text-align: center" value="1"
+                                 onpaste="return false;" 
+onkeyup="value=value.replace(/[^\d]/g,'')"      
+       onblur="value=value.replace(/[^\d]/g,'')">
+                            </div>
+                            	
+                            <div id="jia"><img  id="jiacount" src="../images/+.png"/></div>
+                            <div id="jian"><img  id="jiancount"src="../images/-.png"/></div>
+                        </form>
+
+                    </div>
+                </div>
+                
+                
+                <div class="s-12 m-6 l-4">
+                	<a href="javascript:void(0)" class="button button-raised button-caution" onclick="subCartForm()"
+                	style="padding:2px 15px 5px;border-radius: 5px;color:white;
+                	font-weight: bold;">加入购物车</a>
+                </div>
+                <div class="s-12 m-6 l-4">
+                <a href="javascript:void(0)" class="button button-raised button-caution" onclick="subOrderForm()"
+                	style="padding:2px 15px 5px;border-radius: 5px;color:white;
+                	font-weight: bold;">立即购买 </a>
+                   
+                </div>
+                <div class="bdsharebuttonbox share-icons">
+                    <a href="#" class="bds_more" data-cmd="more"></a>
+
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "24"
+        }, "share": {}
+    };
+    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+
+<!-- PRODUCT DETAIL END -->
+<!-- 检测登录状态和收藏 -->
+<!-- <script type="text/javascript">
+    function favorGood(goodid1) {
+        <c:choose>
+        <c:when test="${empty sessionScope.user}">
+        alert("亲，请先登录");
+
+        window.location.href="<%=basePath%>jsp/loginregister.jsp";
+        </c:when>
+        <c:otherwise>
+        if($("#shoucang").attr("src")==("../images/shoucang.png")){
+            $.ajax(
+                {
+                    type: "post",
+                    url: "${pageContext.request.contextPath}/favor/favorGood.action",
+                    data: "uid=" + ${sessionScope.user.uid} + "&goodid="+goodid1,
+                    success:function (data) {
+                        if(data==1){
+                            alert("收藏成功，可以到我的收藏中查看！");
+                            $("#shoucang").attr("src","../images/shoucanghou.png");
+                        }else if(data==2){
+                            alert("您已经收藏过该商品了");
+                      }
+
+                    }
+
+                }
+            );
+        }
+        </c:otherwise>
+        </c:choose>
+
+    }
+</script> -->
+<script type="text/javascript">
+    function subCartForm(){
+    	document.getElementById('form1').action = "../mao/dotestUI";  
+        document.getElementById("form1").submit();
+    }
+    function subOrderForm(){
+    	document.getElementById('form1').action = "../mao/dotest1UI";  
+        document.getElementById("form1").submit();
+    }
+</script>
+
+
+
+<!-- PRODUCT TAB START -->
+<div class="section padding-top-0">
+    <div class="line">
+        <div class="fullwidth">
+            <div class="tabs left">
+                
+                <div class="tab-item tab-active">
+                    <a class="tab-label active-btn">相关描述</a>
+                    <div class="tab-content padding-left-10">
+                        <h3>相关描述</h3>
+                        <p>新品上市，快快来体验吧！</p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="tab-item">
+                    <a class="tab-label">购买优惠</a>
+                    <div class="tab-content padding-left-10">
+                        <h3>购买优惠</h3>
+                        <p>现阶段购买，优惠多多</p>
+                    </div>
+                </div>
+                <div class="tab-item">
+                    <a class="tab-label">商品评论</a>
+                    <div class="tab-content padding-left-10" style="width: 1075px">
+                        <h3>评论详情</h3>
+                            <h2  style="position: relative;left: 250px;">该商品暂时还没有评论</h2>
+		                <table class="table table-hover">
+							<tbody id="tbodyId">
+							</tbody>
+						</table>
+                    </div>
+                    <br>
+
+                    <hr />
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PRODUCT TAB END -->
+
+
+
+<!-- RELATED PRODUCTS START -->
+<!-- RELATED PRODUCTS END -->
+<!--/start-copyright-section-->
+
+<!-- jQuery Files -->
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../owl-carousel/owl.carousel.js"></script>
+<script type="text/javascript" src="../js/custom.js"></script>
+<script src="../js/jquery.js"></script>
+<link rel="stylesheet" href="../css/style2.css"/>
+<script src="../js/icheck.min.js"></script>
+<script src="../js/laydate.js"></script>
+<script src="../js/global.js"></script>
+
+
+<script>
+	$(function(){
+		   doGetObjects();
+	});	
+	function doGetObjects(){
+		   //1.请求参数
+		   var id = getGid();
+		   var params={"gid":id};
+		   console.log(params);
+		   //2.请求url
+		   var url="doGetGoodsDescById";
+		   //3.发送异步请求获取数据
+		   $.getJSON(url,params,function(result){
+			  //debugger
+			  console.log(result);
+			  doHandleResponseResult(result); 
+		   });
+	  }
+	
+	function doHandleResponseResult(result){
+		if(result.state==1){
+			doshow(result.data);
+		}else{
+			alert(result.message);
+		}
+	}
+	
+	Date.prototype.Format = function (fmt) { //author: meizz 
+	    var o = {
+	        "M+": this.getMonth() + 1, //月份 
+	        "d+": this.getDate(), //日 
+	        "H+": this.getHours(), //小时 
+	        "m+": this.getMinutes(), //分 
+	        "s+": this.getSeconds(), //秒 
+	        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+	        "S": this.getMilliseconds() //毫秒 
+	    };
+	    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	    for (var k in o)
+	    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	    return fmt;
+	}
+
+	
+	function doshow(data){
+		console.log(data.prodpic);
+		$('#prodpic').attr('src','../images/'+data.prodpic);
+		$('#prodname').html(data.gname);
+		$('#prodprice').html("抢购价：￥"+data.price);
+		$('#proddress').html("生产地："+data.paddress);
+		$('#proddesc').html(data.described);
+		$('#producer').html("生产商："+data.producer);
+		var t=new Date(data.pdate).Format("yyyy-MM-dd");
+		$('#pdate').html("生产日期："+t);
+		$('#number').html("库存："+data.number);
+		$('#carr').html("运费：￥"+data.carriage);
+		$('#addcartgid').val(data.gid);
+		
+		$("#countvalue").on("blur",function(){
+			var count=parseInt($("#countvalue").val());
+			if(isNaN(count)){
+				$("#countvalue").val(1);
+			}else{
+			 if(count>=data.number){
+	            	alert("超出库存");
+	            	$("#countvalue").val(data.number);
+	         }else{
+		            $("#countvalue").val(count);
+	         }
+			}
+		})
+		 
+		$("#jiacount").click(function(){
+            var count=parseInt($("#countvalue").val());
+            if(count>=data.number){
+            	alert("超出库存");
+            }else{
+	            $("#countvalue").val(count+1);
+            }
+        });
+        $("#jiancount").click(function(){
+            var count=parseInt($("#countvalue").val());
+            var newcount=count-1;
+            if(newcount<=1) {
+                $("#countvalue").val(1);
+            }else{
+                $("#countvalue").val(newcount);
+            }
+        });
+	}
+	
+	function getGid(){
+		//获取gid
+		$.extend({
+		    getUrlVars: function() {
+		        var vars = [],
+		            hash;
+		        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		        for (var i = 0; i < hashes.length; i++) {
+		            hash = hashes[i].split('=');
+		            vars.push(hash[0]);
+		            vars[hash[0]] = hash[1];
+		        }
+		        return vars;
+		    },
+		    getUrlVar: function(name) {
+		        return $.getUrlVars()[name];
+		    }
+		});
+		var id = $.getUrlVar('gid');
+		return id;
+	}
+   
+</script>
+
+
+
+</body>
+</html>
+

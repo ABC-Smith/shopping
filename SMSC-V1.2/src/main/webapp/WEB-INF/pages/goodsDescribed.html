@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>商品详情</title>
+<base href="<%=basePath%>">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link href="css/another_style.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link rel="stylesheet" href="css/flexslider.css" type="text/css"
+	media="screen" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/memenu.js"></script>
+<script defer src="js/jquery.flexslider.js"></script>
+<script type="text/javascript"> 
+	$(document).ready(function() {
+		$(".memenu").memenu();
+	});
+</script>
+<script type="text/javascript">
+	$(window).load(function() {
+		$('.flexslider').flexslider({
+			animation : "slide",
+			controlNav : "thumbnails"
+		});
+	});
+</script>
+<script type="text/javascript">
+	function editHref() {
+		var number = document.getElementById("buyNumber").value;
+		if (number >
+<%=number%>
+	) {
+			alert("要购买的数量大于库存，请重新选择");
+			return false;
+		}
+		document.getElementById("carthref").href = document
+				.getElementById("carthref").href
+				+ number;
+	}
+</script>
+<style>
+	.mao{
+		float:left;
+	}
+</style>
+</head>
+<body>
+	<jsp:include page="head.jsp"></jsp:include>
+	<br />
+	<br />
+	<div class="">
+		<div class="mao">
+			<img src="images/<%=name%>.jpg" class="">
+		</div>
+		<div class="mao">
+			<h1><%=name%></h1>
+			<p><%=described%></p>
+			<div class="">
+				<a>生产商：<%=producer%></a> <br> <a>生产地：<%=paddress%></a> / <a>运费：<%=carriage%>元
+				</a> / <a>库存：<%=number%></a>
+			</div>
+			<label class=""><%=price%>元</label>
+			<div class="">
+				<h6>购买数量 :</h6>
+				<input name="buyNumber" type="number" value="1" id="buyNumber">
+			</div>
+			<a id="carthref" href="jsp/addToCart.jsp?gid=<%=gid%>&buyNumber=" 
+				onclick="return editHref()">加入购物车</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../owl-carousel/owl.carousel.js"></script>
+<script type="text/javascript" src="../js/custom.js"></script>
+<script src="../js/jquery.js"></script>
+<link rel="stylesheet" href="../css/style2.css"/>
+<script src="../js/icheck.min.js"></script>
+<script src="../js/laydate.js"></script>
+<script src="../js/global.js"></script>
+
+
+<script>
+	$(function(){
+		   doGetObjects();
+	});	
+	function doGetObjects(){
+		   //1.请求参数
+		   var id = getGid();
+		   var params={"gid":id};
+		   console.log(params);
+		   //2.请求url
+		   var url="doGetGoodsDescById";
+		   //3.发送异步请求获取数据
+		   $.getJSON(url,params,function(result){
+			  //debugger
+			  console.log(url);
+			  console.log(result);
+			  //doHandleResponseResult(result); 
+		   });
+	  }
+	
+	function getGid(){
+		//获取gid
+		$.extend({
+		    getUrlVars: function() {
+		        var vars = [],
+		            hash;
+		        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		        for (var i = 0; i < hashes.length; i++) {
+		            hash = hashes[i].split('=');
+		            vars.push(hash[0]);
+		            vars[hash[0]] = hash[1];
+		        }
+		        return vars;
+		    },
+		    getUrlVar: function(name) {
+		        return $.getUrlVars()[name];
+		    }
+		});
+		var id = $.getUrlVar('gid');
+		return id;
+	}
+   // document.getElementById('turn_img').src = '../images/1.jpg';
+    //document.getElementById('turn_img').setAttribute('src','../images/1.jpg');
+</script>
+</body>
+</html>
